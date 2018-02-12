@@ -22,8 +22,8 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
     int resourceId;
     List<Product> productList;
 
-    public ProductListAdapter(@NonNull Context ctxt, int resourceId, List<Product> productList) {
-        super(ctxt, resourceId);
+    public ProductListAdapter(@NonNull Context ctxt, int resourceId,@NonNull List<Product> productList) {
+        super(ctxt, resourceId,productList);
         this.ctxt = ctxt;
         this.resourceId = resourceId;
         this.productList = productList;
@@ -35,10 +35,10 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
         LayoutInflater inflater=LayoutInflater.from(ctxt);
         View view = inflater.inflate(resourceId,null,false);
         Product product = productList.get(position);
-        //ImageView image = (ImageView) view.findViewById(R.id.item_image);
+        ImageView image = (ImageView) view.findViewById(R.id.item_image);
         TextView name = (TextView) view.findViewById(R.id.item_name);
         TextView price = (TextView) view.findViewById(R.id.item_price);
-        //image.setImageDrawable(ctxt.getResources().getDrawable(product.getResourceId()));
+        image.setImageDrawable(ctxt.getResources().getDrawable(product.getResourceId()));
         name.setText(product.getItemName());
         price.setText(String.valueOf(product.getPrice()));
         Button b = (Button) view.findViewById(R.id.add_button);

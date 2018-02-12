@@ -9,9 +9,6 @@
         android:layout_height="match_parent"
         android:id="@+id/list_view">
     </ListView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text = "Hello Shitty App"/>
+
 </LinearLayout>
 
