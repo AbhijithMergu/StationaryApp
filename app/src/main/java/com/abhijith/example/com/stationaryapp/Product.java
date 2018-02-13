@@ -8,11 +8,13 @@ public class Product {
     String itemName;
     float price;
     int resourceId;
+    boolean selected;
     public Product(String itemName, float price, int resourceId)
     {
         this.itemName = itemName;
         this.price = price;
         this.resourceId = resourceId;
+        this.selected=false;
     }
 
     public String getItemName() {
@@ -38,5 +40,9 @@ public class Product {
     public void setResourceId(int resourceId) {
         this.resourceId = resourceId;
     }
+
+    public void setSelection (boolean flag) { this.selected = flag; }
+
+    public boolean getSelection ( ) { return selected; }
 }
 

@@ -14,7 +14,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     List<Product> productList;
     ListView listView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         ProductListAdapter adapter = new ProductListAdapter(this, R.layout.item_list_view, productList);
         listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adapter);
+
+        
     }
 
     @Override
