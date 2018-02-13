@@ -32,16 +32,32 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater inflater=LayoutInflater.from(ctxt);
-        View view = inflater.inflate(resourceId,null,false);
-        Product product = productList.get(position);
+        LayoutInflater inflater = LayoutInflater.from(ctxt);
+        View view = inflater.inflate(resourceId, null, false);
+        final Product product = productList.get(position);
         ImageView image = (ImageView) view.findViewById(R.id.item_image);
         TextView name = (TextView) view.findViewById(R.id.item_name);
-        TextView price = (TextView) view.findViewById(R.id.item_price);
+        final TextView price = (TextView) view.findViewById(R.id.item_price);
         image.setImageDrawable(ctxt.getResources().getDrawable(product.getResourceId()));
         name.setText(product.getItemName());
         price.setText(String.valueOf(product.getPrice()));
-        Button b = (Button) view.findViewById(R.id.add_button);
+        final Button b = (Button) view.findViewById(R.id.add_button);
+        if (product.getSelection() == true) {
+            b.setText("ADDED");
+            b.setEnabled(false);
+        }
+        else {
+            b.setText("ADD");
+            b.setEnabled(true);
+        }
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                product.setSelection(true);
+                b.setText("ADDED");
+                b.setEnabled(false);
+            }
+        });
         return view;
     }
 

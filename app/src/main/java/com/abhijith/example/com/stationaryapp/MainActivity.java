@@ -3,6 +3,8 @@ package com.abhijith.example.com.stationaryapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     List<Product> productList;
     ListView listView;
-
+    List<CartList> cart=new ArrayList<>();
+    Product p;
+Intent cartIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         ProductListAdapter adapter = new ProductListAdapter(this, R.layout.item_list_view, productList);
         listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adapter);
+
+        
     }
 
 }
