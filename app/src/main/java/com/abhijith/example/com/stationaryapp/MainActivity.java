@@ -12,25 +12,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    List<Product> productList;
+    List<CartList> productList;
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        productList = new ArrayList<Product>();
-        productList.add(new Product("Notebook", 30, R.drawable.notebook));
-        productList.add(new Product("Sharpener", 5, R.drawable.sharpener));
-        productList.add(new Product("Stapler", 60, R.drawable.stapler));
-        productList.add(new Product("Pens", 10, R.drawable.pens));
-        productList.add(new Product("Pencil", 5, R.drawable.pencil));
-        productList.add(new Product("Marker", 30, R.drawable.marker));
-        productList.add(new Product("Record Book",35, R.drawable.record));
-        productList.add(new Product("Fevi Kwik",5,R.drawable.fevikwik));
-        productList.add(new Product("Stationary Box",30,R.drawable.stationary_box));
-        productList.add(new Product("Soft Drinks",20,R.drawable.softdrinks));
-        productList.add(new Product("Gone-Mad Chocostick",5,R.drawable.gonemad));
-        productList.add(new Product("Five Star",10,R.drawable.fivestar));
+        productList = new ArrayList<CartList>();
+        productList.add(new CartList("Notebook", 30, R.drawable.notebook));
+        productList.add(new CartList("Sharpener", 5, R.drawable.sharpener));
+        productList.add(new CartList("Stapler", 60, R.drawable.stapler));
+        productList.add(new CartList("Pens", 10, R.drawable.pens));
+        productList.add(new CartList("Pencil", 5, R.drawable.pencil));
+        productList.add(new CartList("Marker", 30, R.drawable.marker));
+        productList.add(new CartList("Record Book",35, R.drawable.record));
+        productList.add(new CartList("Fevi Kwik",5,R.drawable.fevikwik));
+        productList.add(new CartList("Stationary Box",30,R.drawable.stationary_box));
+        productList.add(new CartList("Soft Drinks",20,R.drawable.softdrinks));
+        productList.add(new CartList("Gone-Mad Chocostick",5,R.drawable.gonemad));
+        productList.add(new CartList("Five Star",10,R.drawable.fivestar));
 
         ProductListAdapter adapter = new ProductListAdapter(this, R.layout.item_list_view, productList);
         listView = (ListView) findViewById(R.id.list_view);
@@ -51,8 +51,19 @@ public class MainActivity extends AppCompatActivity {
 
         if(id==R.id.menu_cart_button)
         {
-            Toast.makeText(getApplicationContext(),"Main action is selected",Toast.LENGTH_SHORT).show();
+            ArrayList <CartList> arrayList = new ArrayList<CartList>();
+            for(int i = 0; i<productList.size();i++)
+            {
+                CartList product = productList.get(i);
+                if(product.getSelection())
+                {
+                    arrayList.add(product);
+                }
+            }
             Intent intent = new Intent(MainActivity.this,CartActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList("CartList",arrayList);
+            intent.putExtras(bundle);
             startActivity(intent);
             return true;
         }

@@ -21,6 +21,7 @@ public class CartListAdapter extends ArrayAdapter<CartList>{
     List<CartList> cartlist;
     Context ctxt;
     int resource;
+    CartList cart;
     public CartListAdapter(@NonNull Context context, int resource, @NonNull List<CartList> cartlist) {
         super(context, resource, cartlist);
         ctxt=context;
@@ -37,13 +38,32 @@ public class CartListAdapter extends ArrayAdapter<CartList>{
         TextView textView=view.findViewById(R.id.textView);
         TextView textView1=view.findViewById(R.id.textview2);
         Button button=view.findViewById(R.id.button);
-        TextView textView2=view.findViewById(R.id.textview3);
+        final TextView textView2=view.findViewById(R.id.textview3);
         Button button1=view.findViewById(R.id.button2);
-        CartList cart=cartlist.get(position);
+        cart=cartlist.get(position);
         imageView.setImageDrawable(ctxt.getResources().getDrawable(cart.getImage()));
         textView.setText(cart.getName());
         textView1.setText(String.valueOf(cart.getCost()));
-        textView2.setText(cart.getQty());
+        textView2.setText(String.valueOf(cart.getQty()));
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cart.setQty(cart.getQty()+1);
+                textView2.setText(String.valueOf(cart.getQty()));
+            }
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(cart.getQty()>0)
+                {
+                    cart.setQty(cart.getQty()-1);
+                    textView2.setText(String.valueOf(cart.getQty()));
+                }
+            }
+        });
        return view;
     }
 }

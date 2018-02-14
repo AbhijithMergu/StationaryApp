@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,20 +20,13 @@ public class CartActivity extends Activity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        cartList = new ArrayList<>();
         ListView cartListView=(ListView)findViewById(R.id.cartlistview);
-        cartList.add(new CartList(R.drawable.download,"pen","1",23));
-        cartList.add(new CartList(R.drawable.download,"book","2",23));
-        cartList.add(new CartList(R.drawable.download,"pen","3",23));
-        cartList.add(new CartList(R.drawable.download,"pen","4",23));
-        cartList.add(new CartList(R.drawable.download,"pen","1",23));
-        cartList.add(new CartList(R.drawable.download,"pen","4",23));
-        cartList.add(new CartList(R.drawable.download,"pen","4",23));
-        cartList.add(new CartList(R.drawable.download,"pen","4",23));
-        cartList.add(new CartList(R.drawable.download,"pen","4",23));
+
+
+        Bundle bundle = getIntent().getExtras();
+        cartList = bundle.getParcelableArrayList("CartList");
         CartListAdapter adapter=new CartListAdapter(this,R.layout.mycart_list,cartList);
         cartListView.setAdapter(adapter);
+
     }
-
-
 }
